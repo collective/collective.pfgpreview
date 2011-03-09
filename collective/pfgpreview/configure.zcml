@@ -10,8 +10,8 @@
   <browser:page
       name="preview"
       for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
-      template="fg_confirmpage.pt"
       class=".preview.PreviewPFGView"
+      attribute="preview"
       permission="zope2.View"
       />
 

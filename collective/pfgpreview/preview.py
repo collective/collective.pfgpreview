@@ -2,10 +2,19 @@ from Acquisition import aq_inner
 from Products.Five import BrowserView
 from Products.PloneFormGen import implementedOrProvidedBy
 from Products.Archetypes.interfaces.field import IField
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 class PreviewPFGView(BrowserView):
     """ Browser view that can update and render a PFG form in some other context
     """
+    render = ViewPageTemplateFile("fg_confirmpage.pt")
+
+    def preview(self):
+        errors = self.context.fgvalidate(REQUEST=self.request, errors=None, data=1, metadata=0, skip_action_adapters=True)
+        if errors:
+            return self.request.traverse(self.context.absolute_url_path())()
+        return self.render()
+
     def displayInputs(self):
         """ Returns sequence of dicts {'label':fieldlabel, 'value':input}
         """
@@ -13,7 +22,6 @@ class PreviewPFGView(BrowserView):
         request = self.request
         context = self.context
         myFields = []
-        #print self, getattr(self, '_getFieldObjects', 'Not')
         tp = getattr(context, context.thanksPage, None)
         if not tp:
             return []

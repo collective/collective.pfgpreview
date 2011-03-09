@@ -31,10 +31,6 @@
 -->
             <blockquote>
                 <dl>
-                    <!--tal:block repeat="field python:here.displayInputs(request)">
-                        <dt tal:content="field/label" />
-                        <dd tal:content="structure field/value" />
-                    </tal:block-->
                     <tal:block repeat="field python:view.displayInputs()">
                         <dt tal:content="field/label" />
                         <dd tal:content="structure field/value" />
