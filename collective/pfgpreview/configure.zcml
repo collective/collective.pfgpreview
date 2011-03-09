@@ -1,0 +1,27 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.pfgpreview">
+
+  <five:registerPackage package="." initialize=".initialize" />
+  <browser:page
+      name="preview"
+      for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
+      template="fg_confirmpage.pt"
+      class=".preview.PreviewPFGView"
+      permission="zope2.View"
+      />
+
+  <!--genericsetup:registerProfile
+      name="default"
+      title="collective.pfgpreview"
+      directory="profiles/default"
+      description="Installs the collective.pfgpreview package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      /-->
+  <!-- -*- extra stuff goes here -*- -->
+  
+</configure>
