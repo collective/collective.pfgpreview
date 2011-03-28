@@ -12,7 +12,8 @@ class PreviewPFGView(BrowserView):
     def preview(self):
         errors = self.context.fgvalidate(REQUEST=self.request, errors=None, data=1, metadata=0, skip_action_adapters=True)
         if errors:
-            return self.request.traverse(self.context.absolute_url_path())()
+            return self.request.traverse('/'.join(self.context.getPhysicalPath()))()
+            #return self.request.traverse(self.context.absolute_url_path())()
         return self.render()
 
     def displayInputs(self):
