@@ -14,6 +14,14 @@ class PreviewPFGView(BrowserView):
         if errors:
             return self.request.traverse('/'.join(self.context.getPhysicalPath()))()
             #return self.request.traverse(self.context.absolute_url_path())()
+        if self.context.getRawAfterValidationOverride():
+            # evaluate the override.
+            # In case we end up traversing to a template,
+            # we need to make sure we don't clobber
+            # the expression context.
+            self.context.getAfterValidationOverride()
+            self.context.cleanExpressionContext(request=self.request)
+            
         return self.render()
 
     def displayInputs(self):
