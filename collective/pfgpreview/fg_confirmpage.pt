@@ -29,6 +29,10 @@
 
             <div tal:replace="structure provider:plone.abovecontentbody" />
 -->
+            <h1 tal:content="view/title" class="documentFirstHeading">
+                Title or id
+            </h1>
+            
             <blockquote>
                 <dl>
                     <tal:block repeat="field python:view.displayInputs()">

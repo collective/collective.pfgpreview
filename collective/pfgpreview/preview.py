@@ -9,6 +9,9 @@ class PreviewPFGView(BrowserView):
     """
     render = ViewPageTemplateFile("fg_confirmpage.pt")
 
+    def title(self):
+        return self.context.title
+    
     def preview(self):
         errors = self.context.fgvalidate(REQUEST=self.request, errors=None, data=1, metadata=0, skip_action_adapters=True)
         if errors:
