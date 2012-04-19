@@ -52,7 +52,7 @@
             id=""
             tal:define="enable_unload_protection enable_unload_protection|python:True;
                         enable_auto_focus enable_auto_focus|python:True;"
-            tal:attributes="action here/absolute_url;
+            tal:attributes="action string:${here/absolute_url}/${view/__name__};
                             id string:fg-base-edit;
                             class python:enable_unload_protection and 'enableUnloadProtection' or '' + enable_auto_focus and ' enableAutoFocus' or '' + path('allow_tabbing|nothing') and 'enableFormTabbing' or '';">
 
@@ -140,16 +140,15 @@
                                n_fieldsets python:len(fieldsets)">
 
                 <input class="context"
-                       type="button"
-                       name="form_previous"
+                       type="submit"
+                       name="preview.form_previous"
                        value="Back"
-                       onClick="history.back()"
                        i18n:attributes="value label_previous;"
                        />
                 <input tal:condition="python:fieldset_index == n_fieldsets - 1"
                        class="context"
                        type="submit"
-                       name="form_submit"
+                       name="preview.form_submit"
                        value="Save"
                        i18n:attributes="value label_send;"
                        />

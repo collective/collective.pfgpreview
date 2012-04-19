@@ -11,8 +11,24 @@ class PreviewPFGView(BrowserView):
 
     def title(self):
         return self.context.title
-    
+
     def preview(self):
+        if 'preview.form_previous' in self.request.form:
+            # User wants to go back. We will post back to the form,
+            # but remove form_submit_marker to prevent PFG think
+            # it is common form submission.
+            if 'pfg_form_marker' in self.request.form:
+                del self.request.form['pfg_form_marker']
+            if 'form.submitted' in self.request.form:
+                del self.request.form['form.submitted']
+            return self.request.traverse('/'.join(self.context.getPhysicalPath()))()
+        elif 'preview.form_submit' in self.request.form:
+            # Form should be submitted after Preview page. Submit directly to
+            # the Form folder as is
+            return self.request.traverse('/'.join(self.context.getPhysicalPath()))()
+
+        # form submitted from original PFG location so start the validation process
+        # if everything goes well, the preview page will be displayed
         errors = self.context.fgvalidate(REQUEST=self.request, errors=None, data=1, metadata=0, skip_action_adapters=True)
         if errors:
             return self.request.traverse('/'.join(self.context.getPhysicalPath()))()
@@ -24,7 +40,7 @@ class PreviewPFGView(BrowserView):
             # the expression context.
             self.context.getAfterValidationOverride()
             self.context.cleanExpressionContext(request=self.request)
-            
+
         return self.render()
 
     def displayInputs(self):

@@ -6,4 +6,11 @@ Changelog
 
 - Initial release
 
+1.1 - 2012-04-19
+----------------
+
+- Replaced history.back() with better implementation which 
+  does not propagate old validation errors to user.
+  [naro]
+
 
