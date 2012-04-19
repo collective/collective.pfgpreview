@@ -1,8 +1,8 @@
-from Acquisition import aq_inner
 from Products.Five import BrowserView
 from Products.PloneFormGen import implementedOrProvidedBy
 from Products.Archetypes.interfaces.field import IField
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
 
 class PreviewPFGView(BrowserView):
     """ Browser view that can update and render a PFG form in some other context
@@ -57,7 +57,7 @@ class PreviewPFGView(BrowserView):
             if (not implementedOrProvidedBy(IField, obj) or obj.isLabel()):
                 # if field list hasn't been specified explicitly, exclude server side fields
                 if tp.showAll and obj.getServerSide():
-                    continue 
+                    continue
                 myFields.append(obj)
 
         # Now, determine which fields we show
@@ -79,9 +79,9 @@ class PreviewPFGView(BrowserView):
         for obj in sFields:
             value = obj.htmlValue(request)
             if tp.includeEmpties or (value and (value != 'No Input')):
-                res.append( {
-                    'label' : obj.fgField.widget.label,
-                    'value' : value,
-                    } )
+                res.append({
+                    'label': obj.fgField.widget.label,
+                    'value': value,
+                    })
 
         return res
