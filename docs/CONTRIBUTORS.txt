@@ -1,0 +1,6 @@
+Contributors
+============
+
+Roman Kozlovskiy [kroman0]
+Sune Broendum Woeller [sunew]
+Radim Novotny [naro]
