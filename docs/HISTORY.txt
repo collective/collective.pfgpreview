@@ -1,11 +1,6 @@
 Changelog
 =========
 
-1.0 - 2012-04-19
-----------------
-
-- Initial release
-
 1.1 - 2012-04-19
 ----------------
 
@@ -13,4 +8,9 @@ Changelog
   does not propagate old validation errors to user.
   [naro]
 
+
+1.0 - 2012-04-19
+----------------
+
+- Initial release
 
