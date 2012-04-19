@@ -5,7 +5,7 @@ version = '1.0'
 
 setup(name='collective.pfgpreview',
       version=version,
-      description="Preview page for PFG",
+      description="Preview page for PloneFormGen",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read() +
                        open(os.path.join("docs", "CONTRIBUTORS.txt")).read(),
