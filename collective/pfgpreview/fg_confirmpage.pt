@@ -32,15 +32,23 @@
             <h1 tal:content="view/title" class="documentFirstHeading">
                 Title or id
             </h1>
-            
-            <blockquote>
-                <dl>
-                    <tal:block repeat="field python:view.displayInputs()">
-                        <dt tal:content="field/label" />
-                        <dd tal:content="structure field/value" />
-                    </tal:block>
-                </dl>
-            </blockquote>
+
+            <metal:field use-macro="python:context.widget('previewPrologue', mode='view')"
+                tal:condition="view/prologue">
+                Prologue
+              </metal:field>
+
+              <fieldset>
+                <legend i18n:translate="label_submitted_values">Submitted values</legend>
+                <blockquote>
+                    <dl>
+                        <tal:block repeat="field python:view.displayInputs()">
+                            <dt tal:content="field/label" />
+                            <dd tal:content="structure field/value" />
+                        </tal:block>
+                    </dl>
+                </blockquote>
+            </fieldset>
 
     <div metal:define-macro="body" class="pfg-form"
          tal:attributes="class string:pfg-form formid-${here/getId}">
@@ -139,19 +147,21 @@
                    tal:define="fieldset_index python:fieldsets.index(fieldset);
                                n_fieldsets python:len(fieldsets)">
 
-                <input class="context"
-                       type="submit"
-                       name="preview.form_previous"
-                       value="Back"
-                       i18n:attributes="value label_previous;"
-                       />
                 <input tal:condition="python:fieldset_index == n_fieldsets - 1"
                        class="context"
                        type="submit"
                        name="preview.form_submit"
                        value="Save"
-                       i18n:attributes="value label_send;"
+                       tal:attributes="value view/confirm_button;"
                        />
+
+                <input class="context"
+                       type="submit"
+                       name="preview.form_previous"
+                       value="Back"
+                       tal:attributes="value view/back_button;"
+                       />
+
             </metal:block>
 
             <metal:block define-slot="extra_buttons" />
@@ -160,6 +170,10 @@
 
       </form>
 
+      <metal:field use-macro="python:context.widget('previewEpilogue', mode='view')"
+        tal:condition="view/epilogue">
+        Epilogue
+      </metal:field>
     </div>
 
         </div>

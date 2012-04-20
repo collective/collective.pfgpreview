@@ -1,3 +1,4 @@
+from Acquisition import aq_inner
 from Products.Five import BrowserView
 from Products.PloneFormGen import implementedOrProvidedBy
 from Products.Archetypes.interfaces.field import IField
@@ -9,8 +10,30 @@ class PreviewPFGView(BrowserView):
     """
     render = ViewPageTemplateFile("fg_confirmpage.pt")
 
+    @property
     def title(self):
-        return self.context.title
+        context = aq_inner(self.context)
+        return context.getField('previewTitle').get(context)
+
+    @property
+    def prologue(self):
+        context = aq_inner(self.context)
+        return context.getField('previewPrologue').get(context)
+
+    @property
+    def epilogue(self):
+        context = aq_inner(self.context)
+        return context.getField('previewEpilogue').get(context)
+
+    @property
+    def confirm_button(self):
+        context = aq_inner(self.context)
+        return context.getField('confirmButton').get(context)
+
+    @property
+    def back_button(self):
+        context = aq_inner(self.context)
+        return context.getField('backButton').get(context)
 
     def preview(self):
         if 'preview.form_previous' in self.request.form:
@@ -85,3 +108,13 @@ class PreviewPFGView(BrowserView):
                     })
 
         return res
+
+    @property
+    def confirm_button(self):
+        context = aq_inner(self.context)
+        return context.getField('confirmButton').get(context)
+
+    @property
+    def back_button(self):
+        context = aq_inner(self.context)
+        return context.getField('backButton').get(context)

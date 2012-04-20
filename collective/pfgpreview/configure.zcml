@@ -1,19 +1,19 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:five="http://namespaces.zope.org/five"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="collective.pfgpreview">
 
-  <five:registerPackage package="." initialize=".initialize" />
-  <browser:page
-      name="preview"
-      for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
-      class=".preview.PreviewPFGView"
-      attribute="preview"
-      permission="zope2.View"
-      />
+    <browser:page
+        name="preview"
+        for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
+        class=".preview.PreviewPFGView"
+        attribute="preview"
+        permission="zope2.View"
+        />
+
+    <adapter factory=".extender.FormFolderExtender" name="collective.pfgpreview.formextender" />
 
   <!--genericsetup:registerProfile
       name="default"

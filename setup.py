@@ -27,7 +27,7 @@ setup(name='collective.pfgpreview',
       install_requires=[
           'setuptools',
           'Products.PloneFormGen',
-          # -*- Extra requirements: -*-
+          'archetypes.schemaextender',
       ],
       entry_points="""
       # -*- Entry points: -*-
