@@ -22,7 +22,7 @@ class FormFolderExtender(object):
     fields = [
         ExStringField('previewTitle',
             schemata='preview',
-            required=True,
+            required=False,
             searchable=True,
             primary=False,
             default=u'Please review your submission',
@@ -34,7 +34,7 @@ class FormFolderExtender(object):
 
         ExStringField('confirmButton',
             schemata='preview',
-            required=True,
+            required=False,
             searchable=False,
             primary=False,
             default=u'Confirm',
@@ -46,7 +46,7 @@ class FormFolderExtender(object):
 
         ExStringField('backButton',
             schemata='preview',
-            required=True,
+            required=False,
             searchable=False,
             primary=False,
             default=u'Back',
