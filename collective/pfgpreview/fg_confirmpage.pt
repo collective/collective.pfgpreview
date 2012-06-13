@@ -114,7 +114,7 @@
                    value=""
                    />
 
-            <tal:preview_hidden tal:repeat="field request/preview_hidden">
+            <tal:preview_hidden tal:repeat="field request/preview_hidden|nothing">
                 <input type="hidden" name="preview_hidden:list" value=""
                     tal:attributes="value field"/>
             </tal:preview_hidden>
