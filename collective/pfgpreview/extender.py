@@ -64,8 +64,8 @@ class FormFolderExtender(object):
             default=u'',
             storage=atapi.AnnotationStorage(),
             widget=atapi.StringWidget(
-                label=_(u'Traverse confirmation of the preview to specified URL',
-                description=_(u"If set, Preview will be traversed to specified URL instead of form itself. Specify eg. @@myview to traverse PReview to http://server/form/@@myview.")),
+                label=_(u'Traverse confirmation of the preview to specified URL'),
+                description=_(u"If set, Preview will be traversed to specified URL instead of form itself. Specify eg. @@myview to traverse PReview to http://server/form/@@myview."),
             ),
         ),
 
