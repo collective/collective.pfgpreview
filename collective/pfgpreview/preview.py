@@ -48,7 +48,12 @@ class PreviewPFGView(BrowserView):
         elif 'preview.form_submit' in self.request.form:
             # Form should be submitted after Preview page. Submit directly to
             # the Form folder as is
-            return self.request.traverse('/'.join(self.context.getPhysicalPath()))()
+            path = '/'.join(self.context.getPhysicalPath())
+            # special field which allows to redirect pfg preview to another page than
+            # form itself. I use it for tranferring for to payment gateway.
+            traverse_to = self.context.getField('traverseTo').get(self.context)
+            next = "/" + traverse_to
+            return self.request.traverse(path + next)()
 
         # form submitted from original PFG location so start the validation process
         # if everything goes well, the preview page will be displayed
