@@ -78,6 +78,7 @@ class PreviewPFGView(BrowserView):
         request = self.request
         context = self.context
         myFields = []
+        preview_hidden = request.get('preview_hidden', ())
         tp = getattr(context, context.thanksPage, None)
         if not tp:
             return []
@@ -86,7 +87,9 @@ class PreviewPFGView(BrowserView):
                 # if field list hasn't been specified explicitly, exclude server side fields
                 if tp.showAll and obj.getServerSide():
                     continue
-                myFields.append(obj)
+
+                if obj.getId() not in preview_hidden:
+                    myFields.append(obj)
 
         # Now, determine which fields we show
         if tp.showAll:
