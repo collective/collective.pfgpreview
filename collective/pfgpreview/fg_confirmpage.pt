@@ -5,7 +5,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="collective.pfgpreview">
 
   <body>
 
@@ -39,7 +39,6 @@
               </metal:field>
 
               <fieldset>
-                <legend i18n:translate="label_submitted_values">Submitted values</legend>
                 <blockquote>
                     <dl>
                         <tal:block repeat="field python:view.displayInputs()">
