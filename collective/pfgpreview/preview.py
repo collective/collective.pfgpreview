@@ -1,9 +1,15 @@
 from Acquisition import aq_inner
 from Products.Five import BrowserView
-from Products.PloneFormGen import implementedOrProvidedBy
+# from Products.PloneFormGen import implementedOrProvidedBy
 from Products.Archetypes.interfaces.field import IField
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+# BBB for Z2 vs Z3 interfaces checks
+def implementedOrProvidedBy(anInterface, anObject):
+    try:
+        return anInterface.providedBy(anObject)
+    except AttributeError:
+        return anInterface.isImplementedBy(anObject)
 
 class PreviewPFGView(BrowserView):
     """ Browser view that can update and render a PFG form in some other context

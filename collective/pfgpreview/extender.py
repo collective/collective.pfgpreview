@@ -4,7 +4,7 @@ from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender
 from collective.pfgpreview.i18n import _
 from Products.Archetypes import atapi
-from Products.PloneFormGen.interfaces import IPloneFormGenForm
+from Products.PloneFormGen.interfaces.form import IPloneFormGenForm
 
 
 class ExStringField(ExtensionField, atapi.StringField):
