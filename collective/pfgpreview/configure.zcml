@@ -6,7 +6,7 @@
 
     <browser:page
         name="preview"
-        for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
+        for="Products.PloneFormGen.interfaces.form.IPloneFormGenForm"
         class=".preview.PreviewPFGView"
         attribute="preview"
         permission="zope2.View"
