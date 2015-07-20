@@ -1,8 +1,11 @@
 Changelog
 =========
 
-1.1 - 2012-04-19
+1.1 (2015-07-20)
 ----------------
+
+- Plone 4.3.x compatibility
+  [Armin Stross-Radschinski]
 
 - Replaced history.back() with better implementation which 
   does not propagate old validation errors to user.
